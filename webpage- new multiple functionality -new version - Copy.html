@@ -1,0 +1,500 @@
+
+<body>
+<img src="https://diitwebint17.health.dohmh.nycnet/EPIDC/Branding/images/health_nyc.png".
+<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1" style="padding-bottom:10px;">
+                <h1 class="text-center" style="font-family: Segoe UI;">Survey Catalog</h1>
+                    <p style="font-family:Segoe UI; font-size:medium;">This tool allows you to search for full wording of DOHMH survey questions by Topic and Subtopic, or by word (or by word within Topic and Subtopic). The questionnaire bank includes the most recent wording of questions from our many health surveillance surveys, including the Community Health Survey, NYC KIDS, the high school and middle school Youth Risk Behavior Surveys, as well as recent surveys conducted using the Health NYC Panel, and others. If you are seeking a question not contained in the catalog please email us at <a style="text-decoration: underline;" href="mailto:surveybank@health.nyc.gov">surveybank@health.nyc.gov</a></p>
+            </div>
+<div class="Selectbox">
+
+<th>Topic </th>
+
+<select id="Topic" onchange="SearchData()">
+  <option value="all">all</option>
+  <option value="Access">Access</option>
+  <option value="Discrimination">Discrimination</option>
+  <option value="How You Are Treated">How You Are Treated</option>
+  <option value="">Other</option>
+</select>
+
+<th> SubTopic </th>
+
+<select id="SubTopic" onchange="SearchData()">
+  <option value="all">all</option>
+  <option value="Health Care">Health Care</option>
+  <option value="Gender">Gender</option>
+  <option value="COVID-19">COVID-19</option>
+  <option value="">Other</option>
+</select>
+
+<th> Mode </th>
+
+<select id="Mode" onchange="SearchData()">
+  <option value="all">all</option>
+  <option value="Phone">Phone</option>
+  <option value="Paper">Paper</option>
+  <option value="">Other</option>
+</select>
+
+<th> Year </th>
+
+<select id="Latest Year/Iteration" onchange="SearchData()">
+  <option value="all">all</option>
+  <option value="2004">2004</option>
+  <option value="2017">2017</option>
+  <option value="2020">2020</option>
+</select>
+
+
+
+</div>
+
+<div>
+<th>Search</th>
+
+  <th><input type="text" style="width:82%;height:28px" id="myInput" placeholder="Search for questions.." title="Type in a name"></th>
+  </div>
+  <div>
+  <th><button type="submit" id="search" style="width: 20%; margin-bottom: 10px;" onclick="myFunction()">Search</button>
+  <!--
+  <button type="submit" id="highlight" style="width: 20%; margin-bottom: 10px;"onclick="highlight()">Highlight</button>
+  -->
+  <button type="submit" id="reset" style="width: 20%; margin-bottom: 10px;"onclick="reset()">Reset</button>
+  </div>
+
+<style>
+
+#Topic {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#SubTopic {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#Mode {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+select[id="Latest Year/Iteration"] {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+#search {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+}
+#reset {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+}
+#highlight {
+  background-color: #008CBA; /* Green */
+  border: none;
+  color: white;
+  padding: 6px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+</style>
+  
+  <!--
+<div>
+<table id="newtable">
+<tr>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" height="62" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Topic</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Sub Topics (s)</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Survey Name</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Mode(s)</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Latest Year/Iteration</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Languages</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Programming, if any</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6; border-right: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Question Text</font></b></td>
+		<td style="border-top: 3px solid #e7e6e6; border-left: 3px solid #e7e6e6" align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Answer Options</font></b></td>
+		<td align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Interviewer Notes</font></b></td>
+		<td align="left" valign=bottom bgcolor="#000000"><b><font color="#FFFFFF">Comments</font></b></td>
+</tr>
+</table>
+</div>
+  -->
+
+
+<title>Display table</title>
+
+<!--load D3 dependency-->
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+<!--load Arquero dependency-->
+<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
+</head>
+<body>
+  <style>
+    body {
+      max-width: 800px;
+      margin: auto;
+      font-family:Arial, Helvetica, sans-serif
+    }
+  </style>
+
+  <h1>Survey Catalog</h1>
+  <p>This tool allows you to search for full wording of DOHMH survey questions by Topic and Subtopic, or by word (or by word within Topic and Subtopic). The questionnaire bank includes the most recent wording of questions from our many health surveillance surveys, including the Community Health Survey, NYC KIDS, the high school and middle school Youth Risk Behavior Surveys, as well as recent surveys conducted using the Health NYC Panel, and others. If you are seeking a question not contained in the catalog please email us at <a href="mailto:surveybank@health.nyc.gov">surveybank@health.nyc.gov</a></p>
+  <hr>
+  <div id="tableDestination"></div>
+
+<div>
+<script>
+// loading csv using d3. This is one way to get a CSV into your page's code so that you can manipulate it using JavaScript. It's a lot easier to manipulate a JS variable than to retrieve and manipulate HTML elements.
+var data
+d3.csv('data.csv').then(csv => {
+  data = csv;
+  console.log("Here is our data array:")
+  console.log(data)
+})
+
+// here's an example of how we can filter the object. You could set up your page with event listeners on search or a dropdown filters, and the event listener runs the function filter('search term').
+
+// this example function just searches the 'Question Text' field of the dadta.
+function filter(x) {
+  var results = []; // create an empty array for results
+  for (let i = 0; i < data.length; i++) {
+    if (data[i]['Question Text'].includes(x)) {
+      results.push(data[i]) // if the field includes the searched-text, push the question to a results array.
+    } else {};
+  };
+  console.table(results) // /show the results in the console.
+}
+
+// 
+
+
+
+// loading CSV using Arquero. This is another toolkit that can help with data structuring and filtering. For example, with this code, arquery imports the CSV and then automatically renders it as an HTML table and delivers it to the HTML.
+var arqueroTable;
+aq.loadCSV('data.csv').then(csv => {
+  arqueroTable = csv;
+  arqueroTable.print() // print to console
+
+  makeTable()
+
+});
+
+// doing things using Arquero
+function makeTable() {
+  console.log("Now we'll make a table with Arquero")
+  var html; // create a variable
+  html = arqueroTable.toHTML(); // print arqueroTable to an HTML table
+  console.log(html)
+  document.getElementById('tableDestination').innerHTML = html // send that HTML to the page's code
+}
+
+
+
+
+</script>
+</div>
+
+<style>
+tr, td{
+text-align:center;
+border:none
+}
+
+#testtable.tbody.tr, #testtable.tbody.td{
+text-align:center;
+}
+</style>
+ 
+<style>
+#empTable{
+   overflow-y:scroll;
+   height:510px;
+   display:block;
+}
+.highlight {
+  background-color: yellow;
+}
+</style>
+
+<script>var stIsIE=!1;if(sorttable={init:function(){arguments.callee.done||(arguments.callee.done=!0,_timer&&clearInterval(_timer),document.createElement&&document.getElementsByTagName&&(sorttable.DATE_RE=/^(\d\d?)[\/\.-](\d\d?)[\/\.-]((\d\d)?\d\d)$/,forEach(document.getElementsByTagName("table"),function(t){-1!=t.className.search(/\bsortable\b/)&&sorttable.makeSortable(t)})))},makeSortable:function(t){if(0==t.getElementsByTagName("thead").length&&(the=document.createElement("thead"),the.appendChild(t.rows[0]),t.insertBefore(the,t.firstChild)),null==t.tHead&&(t.tHead=t.getElementsByTagName("thead")[0]),1==t.tHead.rows.length){sortbottomrows=[];for(var e=0;e<t.rows.length;e++)-1!=t.rows[e].className.search(/\bsortbottom\b/)&&(sortbottomrows[sortbottomrows.length]=t.rows[e]);if(sortbottomrows){null==t.tFoot&&(tfo=document.createElement("tfoot"),t.appendChild(tfo));for(e=0;e<sortbottomrows.length;e++)tfo.appendChild(sortbottomrows[e]);delete sortbottomrows}headrow=t.tHead.rows[0].cells;for(e=0;e<headrow.length;e++)headrow[e].className.match(/\bsorttable_nosort\b/)||(mtch=headrow[e].className.match(/\bsorttable_([a-z0-9]+)\b/),mtch&&(override=mtch[1]),mtch&&"function"==typeof sorttable["sort_"+override]?headrow[e].sorttable_sortfunction=sorttable["sort_"+override]:headrow[e].sorttable_sortfunction=sorttable.guessType(t,e),headrow[e].sorttable_columnindex=e,headrow[e].sorttable_tbody=t.tBodies[0],dean_addEvent(headrow[e],"click",sorttable.innerSortFunction=function(t){if(-1!=this.className.search(/\bsorttable_sorted\b/))return sorttable.reverse(this.sorttable_tbody),this.className=this.className.replace("sorttable_sorted","sorttable_sorted_reverse"),this.removeChild(document.getElementById("sorttable_sortfwdind")),sortrevind=document.createElement("span"),sortrevind.id="sorttable_sortrevind",sortrevind.innerHTML=stIsIE?'&nbsp<font face="webdings">5</font>':"&nbsp;&#x25B4;",void this.appendChild(sortrevind);if(-1!=this.className.search(/\bsorttable_sorted_reverse\b/))return sorttable.reverse(this.sorttable_tbody),this.className=this.className.replace("sorttable_sorted_reverse","sorttable_sorted"),this.removeChild(document.getElementById("sorttable_sortrevind")),sortfwdind=document.createElement("span"),sortfwdind.id="sorttable_sortfwdind",sortfwdind.innerHTML=stIsIE?'&nbsp<font face="webdings">6</font>':"&nbsp;&#x25BE;",void this.appendChild(sortfwdind);theadrow=this.parentNode,forEach(theadrow.childNodes,function(t){1==t.nodeType&&(t.className=t.className.replace("sorttable_sorted_reverse",""),t.className=t.className.replace("sorttable_sorted",""))}),sortfwdind=document.getElementById("sorttable_sortfwdind"),sortfwdind&&sortfwdind.parentNode.removeChild(sortfwdind),sortrevind=document.getElementById("sorttable_sortrevind"),sortrevind&&sortrevind.parentNode.removeChild(sortrevind),this.className+=" sorttable_sorted",sortfwdind=document.createElement("span"),sortfwdind.id="sorttable_sortfwdind",sortfwdind.innerHTML=stIsIE?'&nbsp<font face="webdings">6</font>':"&nbsp;&#x25BE;",this.appendChild(sortfwdind),row_array=[],col=this.sorttable_columnindex,rows=this.sorttable_tbody.rows;for(var e=0;e<rows.length;e++)row_array[row_array.length]=[sorttable.getInnerText(rows[e].cells[col]),rows[e]];row_array.sort(this.sorttable_sortfunction),tb=this.sorttable_tbody;for(e=0;e<row_array.length;e++)tb.appendChild(row_array[e][1]);delete row_array}))}},guessType:function(t,e){sortfn=sorttable.sort_alpha;for(var r=0;r<t.tBodies[0].rows.length;r++)if(text=sorttable.getInnerText(t.tBodies[0].rows[r].cells[e]),""!=text){if(text.match(/^-?[Â£$Â¤]?[\d,.]+%?$/))return sorttable.sort_numeric;if(possdate=text.match(sorttable.DATE_RE),possdate){if(first=parseInt(possdate[1]),second=parseInt(possdate[2]),first>12)return sorttable.sort_ddmm;if(second>12)return sorttable.sort_mmdd;sortfn=sorttable.sort_ddmm}}return sortfn},getInnerText:function(t){if(!t)return"";if(hasInputs="function"==typeof t.getElementsByTagName&&t.getElementsByTagName("input").length,null!=t.getAttribute("sorttable_customkey"))return t.getAttribute("sorttable_customkey");if(void 0!==t.textContent&&!hasInputs)return t.textContent.replace(/^\s+|\s+$/g,"");if(void 0!==t.innerText&&!hasInputs)return t.innerText.replace(/^\s+|\s+$/g,"");if(void 0!==t.text&&!hasInputs)return t.text.replace(/^\s+|\s+$/g,"");switch(t.nodeType){case 3:if("input"==t.nodeName.toLowerCase())return t.value.replace(/^\s+|\s+$/g,"");case 4:return t.nodeValue.replace(/^\s+|\s+$/g,"");case 1:case 11:for(var e="",r=0;r<t.childNodes.length;r++)e+=sorttable.getInnerText(t.childNodes[r]);return e.replace(/^\s+|\s+$/g,"");default:return""}},reverse:function(t){newrows=[];for(var e=0;e<t.rows.length;e++)newrows[newrows.length]=t.rows[e];for(e=newrows.length-1;e>=0;e--)t.appendChild(newrows[e]);delete newrows},sort_numeric:function(t,e){return aa=parseFloat(t[0].replace(/[^0-9.-]/g,"")),isNaN(aa)&&(aa=0),bb=parseFloat(e[0].replace(/[^0-9.-]/g,"")),isNaN(bb)&&(bb=0),aa-bb},sort_alpha:function(t,e){return t[0]==e[0]?0:t[0]<e[0]?-1:1},sort_ddmm:function(t,e){return mtch=t[0].match(sorttable.DATE_RE),y=mtch[3],m=mtch[2],d=mtch[1],1==m.length&&(m="0"+m),1==d.length&&(d="0"+d),dt1=y+m+d,mtch=e[0].match(sorttable.DATE_RE),y=mtch[3],m=mtch[2],d=mtch[1],1==m.length&&(m="0"+m),1==d.length&&(d="0"+d),dt2=y+m+d,dt1==dt2?0:dt1<dt2?-1:1},sort_mmdd:function(t,e){return mtch=t[0].match(sorttable.DATE_RE),y=mtch[3],d=mtch[2],m=mtch[1],1==m.length&&(m="0"+m),1==d.length&&(d="0"+d),dt1=y+m+d,mtch=e[0].match(sorttable.DATE_RE),y=mtch[3],d=mtch[2],m=mtch[1],1==m.length&&(m="0"+m),1==d.length&&(d="0"+d),dt2=y+m+d,dt1==dt2?0:dt1<dt2?-1:1},shaker_sort:function(t,e){for(var r=0,o=t.length-1,n=!0;n;){n=!1;for(var s=r;s<o;++s)if(e(t[s],t[s+1])>0){var a=t[s];t[s]=t[s+1],t[s+1]=a,n=!0}if(o--,!n)break;for(s=o;s>r;--s)if(e(t[s],t[s-1])<0){a=t[s];t[s]=t[s-1],t[s-1]=a,n=!0}r++}}},document.addEventListener&&document.addEventListener("DOMContentLoaded",sorttable.init,!1),/WebKit/i.test(navigator.userAgent))var _timer=setInterval(function(){/loaded|complete/.test(document.readyState)&&sorttable.init()},10);function dean_addEvent(t,e,r){if(t.addEventListener)t.addEventListener(e,r,!1);else{r.$$guid||(r.$$guid=dean_addEvent.guid++),t.events||(t.events={});var o=t.events[e];o||(o=t.events[e]={},t["on"+e]&&(o[0]=t["on"+e])),o[r.$$guid]=r,t["on"+e]=handleEvent}}function removeEvent(t,e,r){t.removeEventListener?t.removeEventListener(e,r,!1):t.events&&t.events[e]&&delete t.events[e][r.$$guid]}function handleEvent(t){var e=!0;t=t||fixEvent(((this.ownerDocument||this.document||this).parentWindow||window).event);var r=this.events[t.type];for(var o in r)this.$$handleEvent=r[o],!1===this.$$handleEvent(t)&&(e=!1);return e}function fixEvent(t){return t.preventDefault=fixEvent.preventDefault,t.stopPropagation=fixEvent.stopPropagation,t}window.onload=sorttable.init,dean_addEvent.guid=1,fixEvent.preventDefault=function(){this.returnValue=!1},fixEvent.stopPropagation=function(){this.cancelBubble=!0},Array.forEach||(Array.forEach=function(t,e,r){for(var o=0;o<t.length;o++)e.call(r,t[o],o,t)}),Function.prototype.forEach=function(t,e,r){for(var o in t)void 0===this.prototype[o]&&e.call(r,t[o],o,t)},String.forEach=function(t,e,r){Array.forEach(t.split(""),function(o,n){e.call(r,o,n,t)})};var forEach=function(t,e,r){if(t){var o=Object;if(t instanceof Function)o=Function;else{if(t.forEach instanceof Function)return void t.forEach(e,r);"string"==typeof t?o=String:"number"==typeof t.length&&(o=Array)}o.forEach(t,e,r)}};</script>
+
+<script>
+
+var table = document.getElementById("empTable");
+// save all tr
+var tr = table.getElementsByTagName("tr");
+
+function  SearchData(){
+
+  var Topic = document.getElementById("Topic").value.toUpperCase();
+  var SubTopic = document.getElementById("SubTopic").value.toUpperCase();
+  var Mode = document.getElementById("Mode").value.toUpperCase();
+  var Year = document.getElementById("Latest Year/Iteration").value.toUpperCase();
+
+  //table = document.getElementById("empTable");
+  //tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+
+    var rowTopic = tr[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+    var rowSubTopic = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+    var rowMode = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+    var rowYear = tr[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+
+     var isDiplay = true;
+
+    if (Topic != 'ALL' && rowTopic != Topic) {
+      isDiplay = false;
+    }
+    if (SubTopic != 'ALL' && rowSubTopic != SubTopic) {
+      isDiplay = false;
+    }
+    if (Mode != 'ALL' && rowMode != Mode) {
+      isDiplay = false;
+    }
+    if (Year != 'ALL' && rowYear != Year) {
+      isDiplay = false;
+    }
+    
+    if (isDiplay) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+
+
+  }
+document.getElementById("myInput").value="";
+}
+</script>
+
+<script type="text/javascript">
+$('.container').on("change", 'select', function() {
+  var topic = $('#Topic').val().toLowerCase(),
+    subtopic = $('#SubTopic').val().toLowerCase(),
+    mode = $('#Mode').val().toLowerCase();
+
+  var table = $("#empTable");
+  var trs = table.find('tr');
+  trs.hide();
+
+  var filtered = trs.filter(function(index, elem) {
+    var tds = $(elem).find('td');
+    if (topic !== "all" && tds.eq(1).text().trim().toLowerCase() !== topic) {
+      return false;
+    }
+    if (subtopic !== "all" && tds.eq(2).text().trim().toLowerCase() !== subtopic) {
+      return false;
+    }
+    if (associate !== "all" && tds.eq(3).text().trim().toLowerCase() !== associate) {
+      return false;
+    }
+    return true;
+  })
+
+  filtered.show();
+
+  if (filtered.length == 0) {
+    alert("No Records Found!!!");
+  }
+
+});
+
+</script>
+
+<script>
+
+function highlight() {
+//document.getElementById("Topic").value=Topic.value;
+//document.getElementById("Topic").value=Topic.value;
+  // Declare variables
+  var input, filter, td, txtValue;
+  //var tr= table.getElementsByTagName("tr");
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  //table = document.getElementById("table1");
+  //const table=this.table;
+  //var tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[6];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+	  
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	  // first clear any previously marked text
+      // this strips out the <mark> tags leaving text (actually all tags)
+      td.innerHTML = txtValue;
+
+      index = txtValue.toUpperCase().indexOf(filter);
+      if (index > -1) {
+
+        // using substring with index and filter.length 
+        // nest the matched string inside a <mark> tag
+        td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+	  
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+	  //isDisplay=false;
+    }
+	}}
+  
+  document.getElementById("Topic").value="all";
+  document.getElementById("SubTopic").value="all";
+  document.getElementById("Mode").value="all";
+  document.getElementById("Latest Year/Iteration").value="all";
+
+}
+
+function reset(){
+document.getElementById("myInput").value="";
+
+//document.getElementById("Topic").value=Topic.value;
+//document.getElementById("Topic").value=Topic.value;
+  // Declare variables
+  var input, filter, td, txtValue;
+  //var tr= table.getElementsByTagName("tr");
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  //table = document.getElementById("table1");
+  //const table=this.table;
+  //var tr = table.getElementsByTagName("tr");
+//td.innerHTML = txtValue;
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[6];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+	  
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	  // first clear any previously marked text
+      // this strips out the <mark> tags leaving text (actually all tags)
+      td.innerHTML = txtValue;
+
+      /*index = txtValue.toUpperCase().indexOf(filter);
+      if (index > -1) {
+
+        // using substring with index and filter.length 
+        // nest the matched string inside a <mark> tag
+        
+		td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+		*/
+	  
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+	  //isDisplay=false;
+    }
+	}
+  
+  document.getElementById("Topic").value="all";
+  document.getElementById("SubTopic").value="all";
+  document.getElementById("Mode").value="all";
+  document.getElementById("Latest Year/Iteration").value="all";
+  
+  
+}
+
+function myFunction() {
+var table = document.getElementById("empTable");
+// save all tr
+var tr = table.getElementsByTagName("tr");
+//document.getElementById("Topic").value=Topic.value;
+//document.getElementById("Topic").value=Topic.value;
+  // Declare variables
+  var input, filter, td, txtValue;
+  //var tr= table.getElementsByTagName("tr");
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  //table = document.getElementById("table1");
+  //const table=this.table;
+  //var tr = table.getElementsByTagName("tr");
+//td.innerHTML = txtValue;
+  // Loop through all table rows, and hide those who don't match the search query
+  
+  
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[6];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+	  
+      if (txtValue.toUpperCase().indexOf(filter) > -1){
+	  // first clear any previously marked text
+      // this strips out the <mark> tags leaving text (actually all tags)
+      td.innerHTML = txtValue;
+
+      index = txtValue.toUpperCase().indexOf(filter);
+      if (index > -1) {
+
+        // using substring with index and filter.length 
+        // nest the matched string inside a <mark> tag
+        
+		//td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+	}
+	  
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+	  //isDisplay=false;
+    }
+	}
+  
+  document.getElementById("Topic").value="all";
+  document.getElementById("SubTopic").value="all";
+  document.getElementById("Mode").value="all";
+  document.getElementById("Latest Year/Iteration").value="all";
+
+}
+
+</script>
+
+</body>
