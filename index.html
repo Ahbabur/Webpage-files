@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <body>
+          <img src="https://diitwebint17.health.dohmh.nycnet/EPIDC/Branding/images/health_nyc.png".
+          <div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1" style="padding-bottom:10px;">
+                          <h1 class="text-center" style="font-family: Segoe UI;">Survey Catalog</h1>
+                              <p style="font-family:Segoe UI; font-size:medium;">This tool allows you to search for full wording of DOHMH survey questions by Topic and Subtopic, or by word. The questionnaire bank includes the most recent wording of questions from our many health surveillance surveys, including the Community Health Survey, NYC KIDS, the high school and middle school Youth Risk Behavior Surveys, as well as recent surveys conducted using the Health NYC Panel, and others. If you are seeking a question not contained in the catalog please email us at <a style="text-decoration: underline;" href="mailto:surveybank@health.nyc.gov">surveybank@health.nyc.gov</a></p>
+                      </div>
+                      <div>
+                        <p>
+                <button id="Search button" onclick="newFunction()">Search now</button>
+              </p>
+              </div>
+          
+          <div id="Search view">
+          
+          <div class="Selectbox">
+          
+          <th><b>Topic</b></th>
+          
+          <select id="Topic" onchange="SearchData()">
+            <option value="all">all</option>
+            <option value="Access">Access</option>
+            <option value="Discrimination">Discrimination</option>
+            <option value="How You Are Treated">How You Are Treated</option>
+            <option value="">Other</option>
+          </select>
+          
+          <th><b> SubTopic</b> </th>
+          
+          <select id="SubTopic" onchange="SearchData()">
+            <option value="all">all</option>
+            <option value="Health Care">Health Care</option>
+            <option value="Gender">Gender</option>
+            <option value="COVID-19">COVID-19</option>
+            <option value="">Other</option>
+          </select>
+          
+          <th><b> SurveyName </b></th>
+          <select id="SurveyName" onchange="SearchData()">
+            <option value="all">all</option>
+            <option value="CHS">CHS</option>
+            <option value="SDH">SDH</option>
+            <option value="HOP-6">HOP-6</option>
+            <option value="HOP-7">HOP-7</option>
+            <option value="HOP-10">HOP-10</option>
+            <option value="">Other</option>
+          </select>
+          
+          <div hidden=true>
+
+          <th><b> Mode </b></th>
+          
+          <select id="Mode" onchange="SearchData()">
+            <option value="all">all</option>
+            <option value="Phone">Phone</option>
+            <option value="Paper">Paper</option>
+            <option value="">Other</option>
+            
+          </select>
+
+        </div>
+          
+          <th><b> Year </b></th>
+          
+          <select id="Latest Year/Iteration" onchange="SearchData()">
+            <option value="all">all</option>
+            <option value="2004">2004</option>
+            <option value="2017">2017</option>
+            <option value="2020">2020</option>
+          </select>
+          
+          
+          
+          </div>
+          
+          <div>
+            <p>
+          <th><b>Search</b></th>
+          
+            <th><input type="text" style="width:82%;height:28px" id="myInput" placeholder="Search for questions.." title="Type in a name"></th>
+            </div>
+            <div>
+            <th><button type="submit" id="search" style="width: 20%; margin-bottom: 10px;" onclick="myFunction()">Search</button>
+            <!--
+            <button type="submit" id="highlight" style="width: 20%; margin-bottom: 10px;"onclick="highlight()">Highlight</button>
+            -->
+            <button type="submit" id="reset" style="width: 20%; margin-bottom: 10px;"onclick="reset()">Reset</button>
+          </th>
+          </p>
+          </div>
+          
+          <style>
+          
+            button[id="Search button"]  {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          
+          #Topic {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+          
+          #SubTopic {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+          
+          #SurveyName {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+          
+          #Mode {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+          
+          select[id="Latest Year/Iteration"] {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+          #search {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          #reset {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          #highlight {
+            background-color: #008CBA; /* Green */
+            border: none;
+            color: white;
+            padding: 6px 6px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          
+          </style>
+    <title>Display table</title>
+
+    <!--load D3 dependency-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!--load Arquero dependency-->
+    <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+  </head>
+  <body>
+    <style>
+      body {
+        max-width: 1100px;
+        margin:auto;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+
+    
+    <div id="empTable"></div>
+
+    <script>
+      // loading csv using d3. This is one way to get a CSV into your page's code so that you can manipulate it using JavaScript. It's a lot easier to manipulate a JS variable than to retrieve and manipulate HTML elements.
+      var data;
+      d3.csv("/data11.csv").then((csv) => {
+        data = csv;
+        console.log("Here is our data array:");
+        console.log(data);
+      });
+
+      // here's an example of how we can filter the object. You could set up your page with event listeners on search or a dropdown filters, and the event listener runs the function filter('search term').
+
+      // this example function just searches the 'Question Text' field of the dadta.
+      function filter(x) {
+        var results = []; // create an empty array for results
+        for (let i = 0; i < data.length; i++) {
+          if (data[i]["Question Text"].includes(x)) {
+            results.push(data[i]); // if the field includes the searched-text, push the question to a results array.
+          } else {
+          }
+        }
+        console.table(results); // /show the results in the console.
+      }
+
+      //
+
+      // loading CSV using Arquero. This is another toolkit that can help with data structuring and filtering. For example, with this code, arquery imports the CSV and then automatically renders it as an HTML table and delivers it to the HTML.
+      var arqueroTable;
+      aq.loadCSV("/data11.csv").then((csv) => {
+        arqueroTable = csv;
+        arqueroTable.print(); // print to console
+
+        makeTable();
+      });
+
+      // doing things using Arquero
+      function makeTable() {
+        console.log("Now we'll make a table with Arquero");
+        var html; // create a variable
+        html = arqueroTable.toHTML(); // print arqueroTable to an HTML table
+        console.log(html);
+        document.getElementById("empTable").innerHTML = html; // send that HTML to the page's code
+      }
+    </script>
+    <script>
+
+        var table = document.getElementById("empTable");
+        // save all tr
+        var tr = table.getElementsByTagName("tr");
+        
+        function newData(){
+          var Topic = document.getElementById("Topic").value.toUpperCase();
+          var SubTopic = document.getElementById("SubTopic").value.toUpperCase();
+          var Mode = document.getElementById("Mode").value.toUpperCase();
+          var Year = document.getElementById("Latest Year/Iteration").value.toUpperCase();
+        
+          //table = document.getElementById("empTable");
+          //tr = table.getElementsByTagName("tr");
+          for (i = 1; i < tr.length; i++) {
+        
+            var rowTopic = tr[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+            var rowSubTopic = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+            var rowMode = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+            var rowYear = tr[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+        
+             var isDiplay = true;
+        
+            if (Topic != 'ALL' && rowTopic != Topic) {
+              isDiplay = false;
+            }
+            if (SubTopic != 'ALL' && rowSubTopic != SubTopic) {
+              isDiplay = false;
+            }
+            if (Mode != 'ALL' && rowMode != Mode) {
+              isDiplay = false;
+            }
+            if (Year != 'ALL' && rowYear != Year) {
+              isDiplay = false;
+            }
+            
+            if (isDiplay) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+        
+        
+          }
+        document.getElementById("myInput").value="";
+        
+        }
+        
+        function  SearchData(){
+        
+          var Topic = document.getElementById("Topic").value.toUpperCase();
+          var SubTopic = document.getElementById("SubTopic").value.toUpperCase();
+          var SurveyName=document.getElementById("SurveyName").value.toUpperCase();
+          var Mode = document.getElementById("Mode").value.toUpperCase();
+          var Year = document.getElementById("Latest Year/Iteration").value.toUpperCase();
+        
+          //table = document.getElementById("empTable");
+          //tr = table.getElementsByTagName("tr");
+          for (i = 1; i < tr.length; i++) {
+        
+            var rowTopic = tr[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+            var rowSubTopic = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+            var rowSurveyName=tr[i].getElementsByTagName("td")[5].textContent.toUpperCase();
+            var rowMode = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+            var rowYear = tr[i].getElementsByTagName("td")[6].textContent.toUpperCase();
+        
+             var isDisplay = true;
+        
+            if (Topic != 'ALL' && rowTopic != Topic) {
+              isDisplay = false;
+            }
+            if (SubTopic != 'ALL' && rowSubTopic != SubTopic) {
+              isDisplay = false;
+            }
+            if (SurveyName != 'ALL' && rowSurveyName != SurveyName){
+              isDisplay= false;
+            }
+            if (Mode != 'ALL' && rowMode != Mode) {
+              isDisplay = false;
+            }
+            if (Year != 'ALL' && rowYear != Year) {
+              isDisplay = false;
+            }
+            
+            if (isDisplay) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+        
+        
+          }
+        document.getElementById("myInput").value="";
+        }
+        </script>
+        
+        <script type="text/javascript">
+        $('.container').on("change", 'select', function() {
+          var topic = $('#Topic').val().toLowerCase(),
+            subtopic = $('#SubTopic').val().toLowerCase(),
+            mode = $('#Mode').val().toLowerCase();
+        
+          var table = $("#empTable");
+          var trs = table.find('tr');
+          trs.hide();
+        
+          var filtered = trs.filter(function(index, elem) {
+            var tds = $(elem).find('td');
+            if (topic !== "all" && tds.eq(1).text().trim().toLowerCase() !== topic) {
+              return false;
+            }
+            if (subtopic !== "all" && tds.eq(2).text().trim().toLowerCase() !== subtopic) {
+              return false;
+            }
+            if (associate !== "all" && tds.eq(3).text().trim().toLowerCase() !== associate) {
+              return false;
+            }
+            return true;
+          })
+        
+          filtered.show();
+        
+          if (filtered.length == 0) {
+            alert("No Records Found!!!");
+          }
+        
+        });
+        
+        </script>
+        
+        <script>
+        function newFunction() {
+          var x = document.getElementById("Search view");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+        </script>
+
+<style>
+    tr, td{
+    text-align:center;
+    border:none;
+    font-family: Segoe UI;
+    font-size: 10.5pt;
+    }
+    
+    td{
+    padding-left:8px;
+    padding-right:8px;
+    }
+    </style>
+     
+    <style>
+    
+    #empTable thead,tbody{
+      
+    }
+
+    #empTable thead tr, tbody tr{
+      width: 1100px;
+    }
+    
+    #empTable thead{
+        background-color: #0000CD;
+        color: whitesmoke;
+      position:sticky;
+      top:0;
+      }
+      #empTable {
+        width:1100px;
+        height: 620px;
+        border: none; 
+        overflow-y: scroll;
+      display: block;
+      }
+      
+      tr:nth-child(even) {
+      background-color: #E0FFFF;
+    }
+    
+    .highlight {
+      background-color: yellow;
+    }
+    </style>
+        
+        <script>
+        
+        function highlight() {
+        //document.getElementById("Topic").value=Topic.value;
+        //document.getElementById("Topic").value=Topic.value;
+          // Declare variables
+          var input, filter, td, txtValue;
+          //var tr= table.getElementsByTagName("tr");
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          //table = document.getElementById("table1");
+          //const table=this.table;
+          //var tr = table.getElementsByTagName("tr");
+        
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[6];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+            
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            // first clear any previously marked text
+              // this strips out the <mark> tags leaving text (actually all tags)
+              td.innerHTML = txtValue;
+        
+              index = txtValue.toUpperCase().indexOf(filter);
+              if (index > -1) {
+        
+                // using substring with index and filter.length 
+                // nest the matched string inside a <mark> tag
+                td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+            
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            //isDisplay=false;
+            }
+          }}
+          
+          document.getElementById("Topic").value="all";
+          document.getElementById("SubTopic").value="all";
+          document.getElementById("SurveyName").value="all";
+          document.getElementById("Mode").value="all";
+          document.getElementById("Latest Year/Iteration").value="all";
+        
+        }
+        
+        function reset(){
+        document.getElementById("myInput").value="";
+        
+        //document.getElementById("Topic").value=Topic.value;
+        //document.getElementById("Topic").value=Topic.value;
+          // Declare variables
+          var input, filter, td, txtValue;
+          //var tr= table.getElementsByTagName("tr");
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          //table = document.getElementById("table1");
+          //const table=this.table;
+          //var tr = table.getElementsByTagName("tr");
+        //td.innerHTML = txtValue;
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+            
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            // first clear any previously marked text
+              // this strips out the <mark> tags leaving text (actually all tags)
+              td.innerHTML = txtValue;
+        
+              /*index = txtValue.toUpperCase().indexOf(filter);
+              if (index > -1) {
+        
+                // using substring with index and filter.length 
+                // nest the matched string inside a <mark> tag
+                
+            td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+            */
+            
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            //isDisplay=false;
+            }
+          }
+          
+          document.getElementById("Topic").value="all";
+          document.getElementById("SubTopic").value="all";
+          document.getElementById("SurveyName").value="all";
+          document.getElementById("Mode").value="all";
+          document.getElementById("Latest Year/Iteration").value="all";
+          
+          
+        }
+        
+        function myFunction() {
+        var table = document.getElementById("empTable");
+        // save all tr
+        var tr = table.getElementsByTagName("tr");
+        //document.getElementById("Topic").value=Topic.value;
+        //document.getElementById("Topic").value=Topic.value;
+          // Declare variables
+          var input, filter, td, txtValue;
+          //var tr= table.getElementsByTagName("tr");
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          //table = document.getElementById("table1");
+          //const table=this.table;
+          //var tr = table.getElementsByTagName("tr");
+        //td.innerHTML = txtValue;
+          // Loop through all table rows, and hide those who don't match the search query
+          
+          
+          for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+            
+              if (txtValue.toUpperCase().indexOf(filter) > -1){
+            // first clear any previously marked text
+              // this strips out the <mark> tags leaving text (actually all tags)
+              td.innerHTML = txtValue;
+        
+              index = txtValue.toUpperCase().indexOf(filter);
+              if (index > -1) {
+        
+                // using substring with index and filter.length 
+                // nest the matched string inside a <mark> tag
+                
+            //td.innerHTML = txtValue.substring(0, index) + "<mark>" + txtValue.substring(index, index + filter.length) + "</mark>" + txtValue.substring(index + filter.length);
+          }
+            
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            //isDisplay=false;
+            }
+          }
+          
+          document.getElementById("Topic").value="all";
+          document.getElementById("SubTopic").value="all";
+          document.getElementById("SurveyName").value="all";
+          document.getElementById("Mode").value="all";
+          document.getElementById("Latest Year/Iteration").value="all";
+        
+        }
+        
+        </script>
+        </div>
+        <div>
+          <th>
+            <p>
+            Created by: Ahbabur R. Teertho
+            </p>
+            <p>
+              Credits to: Mathew Montesano, Stephen Immerwahr
+            </p>
+          </th>
+        </div>
+  </body>
+</html>
